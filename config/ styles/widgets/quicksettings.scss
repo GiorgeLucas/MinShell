@@ -1,0 +1,111 @@
+@use "sass:color";
+@use "sass:math";
+@use "../variables" as *;
+
+.qs-container {
+  min-width: 300px;
+  //min-height: 650px;
+  border-radius: $bar-border-radius;
+
+  margin-right: 20px;
+  margin-left: 20px;
+
+  padding: 8px 15px;
+
+  box-shadow: $border-shadow;
+  background-color: $bg-color;
+}
+
+.qs-box {
+  image {
+    padding: 0.5rem;
+    border-radius: $bar-border-radius;
+    background-color: $button-active-bg-color;
+  }
+  // margin-bottom: 0.7rem;
+}
+
+.qs-button {
+  background-color: $button-bg-color;
+  color: $fg-color;
+  border-radius: $bar-border-radius;
+  transition: all 0.1s ease-in-out;
+
+  &:hover{
+    background-color: $button-hover-bg-color;
+    color: $button-hover-fg-color;
+  }
+
+  button {
+    background-color: transparent;
+    color: $fg-color;
+    border-radius: $bar-border-radius;
+    transition: all 0.1s ease-in-out;
+    
+    &:hover{
+      background-color: $button-hover-bg-color;
+      color: $button-hover-fg-color;
+    }
+    &:active{
+      background-color: $button-active-bg-color;
+      color: $button-active-fg-color;
+    }
+
+    &:checked {
+      background-color: $button-active-bg-color;
+      color: $button-active-fg-color;
+    }
+
+  }
+
+ 
+
+  > * {
+    padding: 0.5rem;
+  }
+
+  .status {
+    font-weight: 400;
+  }
+
+  &.active {
+    background-color: $button-active-bg-color;
+    color: $button-active-fg-color;
+  }
+}
+
+.media-player {
+  min-width: 180px;
+  background-color: $bg-color;
+  box-shadow: $border-shadow;
+  padding: 0.5rem;
+  //margin-left: 0.5rem;
+  border-radius: $bar-border-radius;
+
+  label {
+    color: $fg-color;
+  }
+
+  button {
+    background-color: $button-bg-color;
+    color: $button-fg-color;
+    padding: 2px;
+    margin-left: 2px;
+    transition: all 0.1s ease-in-out;
+
+    &:hover{
+      background-color: $button-hover-bg-color;
+      color: $button-hover-fg-color;
+    }
+
+    &:active{
+      background-color: $button-active-bg-color;
+      color: $button-active-fg-color;
+    }
+  }
+
+  .cover {
+    border-radius: $bar-border-radius;
+    margin-right: 0.3rem;
+  }
+}

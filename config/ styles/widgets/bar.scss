@@ -1,0 +1,51 @@
+@use "../variables.scss" as *;
+@use "sass:color";
+@use "sass:list";
+@use "sass:math";
+
+window.Bar {
+    background: transparent;
+    color: $fg-color;
+    font-weight: bold;
+
+    bar-container {
+        background: $bg-color;
+        border-radius: $bar-border-radius;
+        box-shadow: $border-shadow;
+        margin: 8px 20px;
+        margin-bottom: 5px;
+        padding: 2px 8px;
+        min-height: 1em;
+    
+        .workspace-button {
+            background-color: $button-bg-color;
+            border-radius: calc(list.nth($button-border-radius, 1) * 1.5);
+            min-height: 1.0em;
+            min-width: 1.0em;
+            transition: min-width 0.2s linear;
+            &.active {
+                min-width: 2.8rem;
+                min-height: 1.2rem;
+                background-color: $accent;
+            }
+
+            &.occupied {
+                background-color: $button-fg-color;
+                &.active {
+                    background-color: $accent;
+                }
+            }
+        }
+        
+        .trayBox{
+            margin: 4px 0px;
+            padding: 0px 8px;
+
+            image {
+                -gtk-icon-size: 1.5em;
+            }
+        }
+    }
+
+    
+}

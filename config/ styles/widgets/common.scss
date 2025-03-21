@@ -1,0 +1,144 @@
+@use "../variables" as *;
+
+* {
+  font-family: "Noto Sans";
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+scale {
+  margin: 0;
+  padding: 0;
+  border-radius: calc(nth($bar-border-radius, 1) * 99);
+  background-color: $panel-hover-bg-color;
+  trough {
+    border-radius: calc(nth($bar-border-radius, 1) * 99);
+    highlight {
+      background-color: $button-active-bg-color;
+      min-height: 25px;
+      // min-width: 25px;
+      border-radius: calc(nth($bar-border-radius, 1) * 99);
+    }
+    slider {
+      box-shadow: none;
+      outline: unset;
+      background-color: transparent;
+    }
+  }
+}
+
+menubutton {
+  padding: 0;
+
+  button {
+    padding: unset;
+    margin: unset;
+    border-radius: 6px;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+}
+
+button {
+  padding: unset;
+  margin: unset;
+  border-radius: 6px;
+  background-color: transparent;
+  transition: transform 0.2s ease-in-out;
+
+  &:active>* {
+    transform: scale(0.85);
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+window {
+  background: transparent;
+  color: $fg-color;
+  font-weight: bold;
+}
+
+separator {
+  min-height: 2px;
+  margin: 0.3rem 0.5rem;
+  border-radius: 12px;
+  background-color: $fg-2-color;
+
+  &.vertical {
+    min-height: unset;
+    min-width: 2px;
+    margin: 0.5rem 0.3rem;
+  }
+}
+
+.panel-button {
+  background-color: $bg-color;
+  //box-shadow:
+  //    0 0 0 1px rgba(255, 255, 255, 0.1),
+  //    2px 2px 4px 0 rgba(0, 0, 0, 0.3);
+  color: $fg-color;
+  border-radius: 6px;
+  padding: 5px 10px;
+  margin: 2px;
+  transition: all 0.2s ease-in-out;
+
+  &.notifications .circle {
+    border-radius: 99px;
+  }
+
+  &:hover {
+    background-color: $panel-hover-bg-color;
+    color: $panel-hover-fg-color;
+  }
+
+  &.active {
+    background-color: $panel-active-bg-color;
+    color: $panel-active-fg-color;
+  }
+}
+
+.window-content {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  margin: 8px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    4px 4px 8px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+}
+
+.text-icon {
+  font-family: "FiraCode Nerd Font Mono";
+}
+
+popover contents {
+  
+  border-radius: $bar-border-radius;
+  box-shadow: $border-shadow;
+  background-color: $bg-color;
+
+  separator {
+    background-color: $fg-color;
+  }
+
+  padding: 0px;
+  min-width: 10em;
+  modelbutton {
+    background-color: $bg-color;
+    color: $fg-color;
+    padding: 8px 8px 8px 8px;
+    
+    &:first-child {
+      //margin-bottom: 0.3rem;
+    }
+    &:hover {
+      background-color: $panel-hover-bg-color;
+      color: $panel-hover-fg-color;
+    }
+  }
+}

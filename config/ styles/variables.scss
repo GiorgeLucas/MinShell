@@ -1,0 +1,42 @@
+@use "sass:color";
+@use "sass:list";
+@use "sass:math";
+
+$fg-color: #000000;
+$fg-2-color: color.adjust($fg-color, $alpha: -0.90);
+$bg-color: #ffffff;
+
+$bar-border-color: #000000;
+$bar-border-size: 0px;
+$bar-border-radius: 0.5em;
+
+$border-shadow: 0 0 0 2px $bar-border-color, /* Borda ao redor */
+0px 0px 7px #00000037; /* Sombra */
+
+
+
+// Buttons
+$button-border-radius: 10px;
+
+$button-active-bg-color: #222222;
+$button-active-fg-color: #ffffff;
+
+$button-hover-bg-color: #222222;
+$button-hover-fg-color: #ffffff;
+
+$button-bg-color: color.adjust($button-active-bg-color, $alpha: -0.90);
+$button-fg-color: #101010;
+
+// Panel Button ###########################################
+
+$panel-active-bg-color: #222222;
+$panel-active-fg-color: #ffffff;
+
+$panel-hover-bg-color: color.adjust($button-active-bg-color, $alpha: -0.90);
+$panel-hover-fg-color: #101010;
+
+//$panel-bg-color: color.adjust($panel-active-bg-color, $alpha: -0.90);
+$panel-bg-color: $bg-color;
+$panel-fg-color: #101010;
+
+$accent: #000000;
