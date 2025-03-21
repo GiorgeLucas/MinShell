@@ -27,5 +27,6 @@
         cp -r ${./config}/* $out/share/minShell/config
       '';
     };
+    packages.x86_64-linux.default = self.packages.x86_64-linux.minShell;
   };
 }
