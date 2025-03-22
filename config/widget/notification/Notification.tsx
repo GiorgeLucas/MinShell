@@ -47,7 +47,7 @@ export default function Notification({
       vexpand={false}
     >
       <box vertical>
-        <box cssClasses={["header"]}>
+        <box cssClasses={["header"]} spacing={6}>
           {(n.appIcon || n.desktopEntry) && (
             <image
               cssClasses={["app-icon"]}
