@@ -1,5 +1,5 @@
 import { timeout } from "astal";
-import { App, Astal, hook, Gdk } from "astal/gtk4";
+import { App, Astal, hook, Gdk, Widget, Gtk } from "astal/gtk4";
 import AstalNotifd from "gi://AstalNotifd";
 import Notification from "./Notification";
 import AstalHyprland from "gi://AstalHyprland?version=0.1";
@@ -23,7 +23,16 @@ export default function NotificationPopup(gdkmonitor: Gdk.Monitor) {
     <window
       namespace={"notification-popup"}
       setup={(self) => {
+
+        self.hexpand = false;
+        self.vexpand = false;
+        self.widthRequest = 400; 
+
         sendBatch([`layerrule animation slide top, ${self.namespace}`]);
+
+        const container = Widget.Box({ vertical: true });
+        self.set_child(container);
+
         const notificationQueue: number[] = [];
         let isProcessing = false;
 
@@ -54,24 +63,24 @@ export default function NotificationPopup(gdkmonitor: Gdk.Monitor) {
           const notification = notifd.get_notification(id!);
           if (!notification) {
             isProcessing = false;
-            // Chama processQueue novamente para processar a próxima notificação na fila
             processQueue();
             return;
           }
 
-          self.set_child(
-            <box vertical>
-              {Notification({ n: notifd.get_notification(id!) })}
-              <box vexpand />
-            </box>,
-          );
+          const notificationWidget = Notification({ n: notification });
+        
+          container.children = [notificationWidget, Widget.Box({ vexpand: true })];
+
+          notificationWidget.measure(Gtk.Orientation.HORIZONTAL, -1);
+          notificationWidget.measure(Gtk.Orientation.VERTICAL, -1);
+
           self.visible = true;
 
           timeout(5000, () => {
             self.visible = false;
-            isProcessing = false;
-            self.set_child(null);
             timeout(300, () => {
+              container.children = [];
+              isProcessing = false;
               processQueue();
             });
           });
