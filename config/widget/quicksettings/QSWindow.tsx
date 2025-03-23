@@ -10,6 +10,7 @@ import MediaPlayer from "../mediaplayer/MediaPlayer";
 import { bind } from "astal";
 import AstalMpris from "gi://AstalMpris";
 import PowerMenu from "../powermenu/PowerMenu";
+import WallpaperToggleQS from "./buttons/WallpaperToggleQS";
 
 export const WINDOW_NAME = "quicksettings";
 
@@ -26,6 +27,7 @@ function QSButtons() {
       <ScreenshotQS />
       <DontDisturbQS />
       <MicQS />
+      <WallpaperToggleQS />
     </FlowBox>
   );
 }

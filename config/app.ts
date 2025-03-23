@@ -1,6 +1,6 @@
-import { App } from "astal/gtk4"
-import style from "./ styles/styles.scss"
-import windows from "./windows"
+import { App } from "astal/gtk4";
+import style from "./ styles/styles.scss";
+import windows from "./windows";
 import initHyprland from "./utils/hyprland";
 
 App.start({

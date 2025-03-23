@@ -1,0 +1,60 @@
+@use "sass:color";
+@use "sass:math";
+@use "../variables" as *;
+
+.wallpaperpicker-container {
+  min-height: 150px;
+  background-color: $bg-color;
+  color: $fg-color;
+  box-shadow: $border-shadow;
+
+  > box {
+    margin: 2em;
+    margin-bottom: 0.5rem;
+    
+    label {
+      font-size: 1.2rem;
+      color: $fg-color;
+
+      &.directory {
+        font-size: 0.95rem;
+        font-weight: 400;
+        font-style: italic;
+      }
+    }
+
+    button {
+      color: $button-fg-color;
+      background-color: $button-bg-color;
+      padding: 0 0.6rem;
+
+      &:hover {
+        color: $button-fg-color;
+        background-color: $button-bg-color;
+      }
+
+      &:active {
+        color: $button-active-fg-color;
+        background-color: $button-active-bg-color;
+      }
+    }
+  }
+
+  separator {
+    margin: $padding;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  scrolledwindow viewport {
+    > box {
+      margin: $padding;
+      margin-top: 6px;
+    }
+  }
+
+  .image {
+    border-radius: $border-radius;
+    background-size: contain;
+  }
+}
