@@ -142,3 +142,19 @@ popover contents {
     }
   }
 }
+
+.button-padding{
+  background-color: transparent;
+  &:hover{
+    background-color: transparent;
+  }
+}
+
+tooltip {
+  color: $fg-color;
+  background-color: $bg-color;
+  border-radius: $bar-border-radius;
+  box-shadow: $border-shadow;
+  padding: 0.4em;
+  margin: 0.4em;
+}

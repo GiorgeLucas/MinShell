@@ -1,4 +1,4 @@
-import { Gdk, Gtk } from "astal/gtk4";
+import { App, Gdk, Gtk } from "astal/gtk4";
 import PopupWindow from "../common/PopupWindow";
 import VolumeBox from "./VolumeBox";
 import ColorPickerQS from "./buttons/ColorPickerQS";
@@ -9,6 +9,7 @@ import MicQS from "./buttons/MicQS";
 import MediaPlayer from "../mediaplayer/MediaPlayer";
 import { bind } from "astal";
 import AstalMpris from "gi://AstalMpris";
+import PowerMenu from "../powermenu/PowerMenu";
 
 export const WINDOW_NAME = "quicksettings";
 
@@ -38,12 +39,24 @@ function MediaPLayerList(){
             <>
               <Gtk.Separator />
               {players.map((player) => (
-                <MediaPlayer player={player} />
+                <>
+                  <MediaPlayer player={player} />
+                  <Gtk.Separator />
+                </>
               ))}
             </>
-          ) : null
+          ) : <Gtk.Separator />
         ))}
     </>
+  )
+}
+
+function Header(){
+  return (
+    <box hexpand={true} cssClasses={["header"]} spacing={6}>
+      <label label={"Quick Setting"} hexpand xalign={0} valign={Gtk.Align.CENTER} />
+      <PowerMenu />
+    </box>
   )
 }
 
@@ -60,9 +73,10 @@ export default function QSWindow(_gdkmonitor: Gdk.Monitor) {
         vertical
         spacing={10}
       >
+        <Header />
+        <Gtk.Separator />
         <QSButtons />
         <MediaPLayerList />
-        <Gtk.Separator />
         <VolumeBox />
       </box>
     </PopupWindow>

@@ -13,7 +13,7 @@ export default function PanelButton({
   ...props
 }: PanelButtonProps) {
   return (
-    <button
+    <button 
       cssClasses={["panel-button"]}
       setup={(self) => {
         if (window) {

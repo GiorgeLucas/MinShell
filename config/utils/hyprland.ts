@@ -24,7 +24,7 @@ export function windowAnimation() {
 }
 
 function windowBlur() {
-  const noIgnorealpha = ["verification", "powermenu"];
+  const noIgnorealpha = ["powermenu"];
 
   sendBatch(
     App.get_windows().flatMap(({ namespace }: any) => {
