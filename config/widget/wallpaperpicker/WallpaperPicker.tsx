@@ -213,7 +213,7 @@ function wallpaperPicker() {
                               450,
                               `${w.split(".").shift()}_current`,
                             );
-                            GLib.remove(wallpaper.current.get_value());
+                            GLib.remove(current);
                             wallpaper.current.value = current;
                           });
                         }}

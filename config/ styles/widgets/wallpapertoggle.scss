@@ -4,6 +4,7 @@
 
 .wallpaperpicker-container {
   min-height: 150px;
+  margin: 20px;
   background-color: $bg-color;
   color: $fg-color;
   box-shadow: $border-shadow;
@@ -29,8 +30,8 @@
       padding: 0 0.6rem;
 
       &:hover {
-        color: $button-fg-color;
-        background-color: $button-bg-color;
+        color: $button-hover-fg-color;
+        background-color: $button-hover-bg-color;
       }
 
       &:active {
@@ -41,20 +42,25 @@
   }
 
   separator {
-    margin: $padding;
+    margin: 2em;
     margin-top: 0;
     margin-bottom: 0;
   }
 
   scrolledwindow viewport {
     > box {
-      margin: $padding;
+      margin: 2em;
       margin-top: 6px;
     }
   }
 
+  .wallpaper-button {
+    background-color: pink;
+  }
+
+
   .image {
-    border-radius: $border-radius;
+    border-radius: $bar-border-radius;
     background-size: contain;
   }
 }
