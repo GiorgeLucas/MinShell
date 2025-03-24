@@ -15,9 +15,11 @@
       button {
         margin: 0px 2px;
         padding: 8px;
-        color: black;
+        color: $fg-color;
+        background-color: unset;
         &:hover{
-          background-color: $panel-hover-bg-color;
+          color: $button-hover-fg-color;
+          background-color: $button-hover-bg-color;
         }
       }
     }

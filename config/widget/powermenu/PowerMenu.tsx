@@ -12,7 +12,6 @@ const icons = {
 function SysButton({ action, label }: { action: string; label: string }) {
   return (
     <button
-      cssClasses={["qs-button"]}
       onClicked={() => powermenu.action(action)}
       tooltipText={label}
     >

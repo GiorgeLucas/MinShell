@@ -42,9 +42,8 @@ menubutton {
 }
 
 button {
-  padding: unset;
-  margin: unset;
-  border-radius: 6px;
+  color: $button-fg-color;
+  border-radius: $button-border-radius;
   background-color: transparent;
   transition: transform 0.2s ease-in-out;
 
@@ -53,7 +52,13 @@ button {
   }
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+    color: $button-hover-fg-color;
+    background-color: $button-hover-bg-color;
+  }
+
+  &:active {
+    color: $button-active-fg-color;
+    background-color: $button-active-bg-color;
   }
 }
 
@@ -78,12 +83,9 @@ separator {
 
 .panel-button {
   background-color: $bg-color;
-  //box-shadow:
-  //    0 0 0 1px rgba(255, 255, 255, 0.1),
-  //    2px 2px 4px 0 rgba(0, 0, 0, 0.3);
   color: $fg-color;
-  border-radius: 6px;
-  padding: 5px 10px;
+  border-radius: $panel-border-radius;
+  padding: $panel-padding;
   margin: 2px;
   transition: all 0.2s ease-in-out;
 

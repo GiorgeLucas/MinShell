@@ -10,7 +10,7 @@
   margin-right: 20px;
   margin-left: 20px;
 
-  padding: 8px 15px;
+  padding: $window-padding;
 
   box-shadow: $border-shadow;
   background-color: $bg-color;
@@ -113,4 +113,26 @@
 .header label{
   color: $fg-color;
   font-size: 1.3em;
+}
+
+.header button {
+  color: $button-fg-color;
+  background-color: $button-bg-color;
+  border-radius: $button-border-radius;
+  padding: $button-padding;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    color: $button-hover-fg-color;
+    background-color: $button-hover-bg-color;
+  }
+
+  &:active {
+    color: $button-active-fg-color;
+    background-color: $button-active-bg-color;
+  }
+}
+
+.volume-box button{
+  color: $button-active-fg-color;
 }

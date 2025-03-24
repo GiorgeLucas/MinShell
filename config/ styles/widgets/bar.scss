@@ -20,6 +20,7 @@ window.Bar {
         .workspace-button {
             background-color: $button-bg-color;
             border-radius: calc(list.nth($button-border-radius, 1) * 1.5);
+            padding: 0px;
             min-height: 1.0em;
             min-width: 1.0em;
             transition: min-width 0.2s linear;
