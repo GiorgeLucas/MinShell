@@ -1,6 +1,6 @@
+@use "../Themes/DarkTheme.scss" as *;
 @use "sass:color";
 @use "sass:math";
-@use "../variables" as *;
 
 .wallpaperpicker-container {
   min-height: 150px;

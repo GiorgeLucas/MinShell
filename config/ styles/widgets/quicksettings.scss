@@ -1,6 +1,6 @@
+@use "../Themes/DarkTheme.scss" as *;
 @use "sass:color";
 @use "sass:math";
-@use "../variables" as *;
 
 .qs-container {
   min-width: 300px;
