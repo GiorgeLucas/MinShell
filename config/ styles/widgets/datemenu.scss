@@ -1,8 +1,8 @@
 @use "../variables" as *;
 
 .datemenu-container {
-  background-color: white;
-  color: black;
+  background-color: $bg-color;
+  color: $fg-color;
   font-size: 1.1em;
   padding: 1em;
   box-shadow: $border-shadow;
@@ -38,7 +38,7 @@
         background-color: $panel-hover-bg-color;
       }
       &:selected {
-        border: 2px solid black;
+        border: 2px solid $fg-color;
         color: $fg-color;
         background-color: $bg-color;
       }
