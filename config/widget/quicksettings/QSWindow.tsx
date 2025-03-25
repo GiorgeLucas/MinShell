@@ -11,6 +11,7 @@ import { bind } from "astal";
 import AstalMpris from "gi://AstalMpris";
 import PowerMenu from "../powermenu/PowerMenu";
 import WallpaperToggleQS from "./buttons/WallpaperToggleQS";
+import ThemeToggleQS from "./buttons/ThemeToggleQS";
 
 export const WINDOW_NAME = "quicksettings";
 
@@ -28,6 +29,7 @@ function QSButtons() {
       <DontDisturbQS />
       <MicQS />
       <WallpaperToggleQS />
+      <ThemeToggleQS />
     </FlowBox>
   );
 }
