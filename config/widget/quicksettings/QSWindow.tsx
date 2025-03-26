@@ -58,7 +58,7 @@ function MediaPLayerList(){
 function Header(){
   return (
     <box hexpand={true} cssClasses={["header"]} spacing={6}>
-      <label label={"Quick Setting"} hexpand xalign={0} valign={Gtk.Align.CENTER} />
+      <label label={"Quick Settings"} hexpand xalign={0} valign={Gtk.Align.CENTER} />
       <PowerMenu />
     </box>
   )
