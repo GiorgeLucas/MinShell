@@ -1,7 +1,10 @@
 import { App } from "astal/gtk4";
-import style from "./ styles/styles.scss";
+import style from "./styles/themes/light/index.scss";
 import windows from "./windows";
 import initHyprland from "./utils/hyprland";
+import { initThemes } from "./utils/styles";
+
+initThemes();
 
 App.start({
     css: style,

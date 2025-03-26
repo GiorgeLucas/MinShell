@@ -1,0 +1,177 @@
+@use "../variables.scss" as *;
+@use "sass:color";
+@use "sass:math";
+
+.notifications-container {
+  min-width: 400px;
+  min-height: 420px;
+  border-radius: $bar-border-radius;
+
+  margin-right: 20px;
+  margin-left: 20px;
+
+  box-shadow: $border-shadow;
+  background-color: $bg-color;
+
+  separator {
+    margin: 8px;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    background-color: $fg-color;
+  }
+
+  .window-header {
+    padding: 8px;
+    padding-bottom: 0;
+
+    label {
+      font-size: 1.2rem;
+      color: $fg-color;
+    }
+
+    .dnd {
+      margin-right: 0.5rem;
+      background-color: $panel-hover-bg-color;
+      padding: 0 0.6rem;
+      transition: all 0.2s ease-in-out;
+
+      &.active {
+        label {
+          color: $button-active-fg-color;
+        }
+
+        background-color: $button-active-bg-color;
+
+        &:hover {
+          background-color: $button-active-bg-color;
+        }
+      }
+
+      &:hover {
+        background-color: $panel-hover-bg-color;
+      }
+
+      label {
+        font-size: 0.95rem;
+        color: $fg-color;
+      }
+    }
+
+    .clear {
+      padding: 0.2rem 0.5rem;
+      background-color: $button-bg-color;
+      color: $fg-color;
+      transition: all 0.2s ease-in-out;
+
+      &:active{
+        transition: all 0.1s linear;
+        color: $button-active-fg-color;
+        background-color: $button-active-bg-color;
+      }
+      
+    }
+
+  }
+
+  scrolledwindow viewport>box {
+    label {
+      font-size: 1rem;
+      color: $fg-color;
+    }
+
+    .not-found-icon {
+      font-size: 4em;
+    }
+
+    margin: 8px;
+    margin-top: 1px;
+  }
+
+  .notification-container {
+    min-width: 1px;
+    min-height: 1px;
+    margin: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: $border-shadow;
+    border-radius: 4px;
+  }
+}
+
+.notification-container {
+  background-color: $bg-color;
+  box-shadow: $border-shadow;
+  border-radius: $bar-border-radius;
+
+  min-width: 330px;
+
+  padding: 12px 8px;
+
+  .header {
+
+    .app-name {
+      color: $fg-color;
+    }
+
+    .time {
+      margin-right: 0.5rem;
+      color: $fg-color;
+    }
+
+    button {
+      padding: 0.4em;
+      background-color: $button-bg-color;
+      border-radius: 4px;
+      color: $button-fg-color;
+      transition: all 0.1s ease-in-out;
+
+      &:hover {
+        color: $button-active-fg-color;
+        background-color: $button-active-bg-color;
+      }
+    }
+  }
+
+  separator {
+    margin: 0.4rem 0;
+    background-color: $fg-color;
+  }
+
+  .content {
+    .summary {
+      font-size: 1.3em;
+      color: $fg-color;
+    }
+
+    .body {
+      font-size: 1.1em;
+      font-weight: normal;
+      color: $fg-color;
+    }
+
+    .image image {
+      border-radius: 5px;
+      min-width: 60px;
+      min-height: 60px;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .actions {
+    margin-top: 0.5rem;
+
+    button {
+      padding: 6px 20px;
+      background-color: $button-bg-color;
+      border-radius: 4px;
+      color: $button-fg-color;
+      transition: all 0.1s ease-in-out;
+
+      &:hover {
+        color: $button-active-fg-color;
+        background-color: $button-active-bg-color;
+      }
+    }
+  }
+}

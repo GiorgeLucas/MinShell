@@ -3,6 +3,7 @@ import QSButton from "../QSButton";
 import { bind, GLib, Variable } from "astal";
 import { App } from "astal/gtk4";
 import app from "astal/gtk4/app";
+import { applyTheme } from "../../../utils/styles";
 
 export default function ThemeToggleQS() {
   
@@ -15,10 +16,12 @@ export default function ThemeToggleQS() {
       label={"Toggle Dark Mode"}
       onClicked={() => {
         if(darkTheme.get()){
-          App.apply_css(GLib.get_user_cache_dir() + "/DarkTheme.css")
+          //App.apply_css(GLib.get_user_cache_dir() + "/dark.css")
+          applyTheme("light");
           darkTheme.set(false);
         }else{
-          App.apply_css(GLib.get_user_cache_dir() + "/LightTheme.css")
+          //App.apply_css(GLib.get_user_cache_dir() + "/light.css")
+          applyTheme("dark");
           darkTheme.set(true);
         }
         
