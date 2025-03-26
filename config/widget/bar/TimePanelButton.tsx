@@ -1,5 +1,5 @@
 import { GLib, Variable } from "astal";
-import { App,  } from "astal/gtk4";
+import { App, Gtk,  } from "astal/gtk4";
 import PanelButton from "../common/PanelButton";
 import { WINDOW_NAME } from "../datemenu/Datemenu";
 
@@ -13,8 +13,6 @@ export default function TimePanelButton({ format = "%H:%M" }) {
   function onClick(){
     if(App.get_window(WINDOW_NAME)){
       App.toggle_window(WINDOW_NAME);
-    }else{
-      
     }
   }
 
@@ -23,7 +21,7 @@ export default function TimePanelButton({ format = "%H:%M" }) {
       window={WINDOW_NAME}
       onClicked={onClick}
     >
-      <label label={time((t) => t.format(format)!)} />
+      <label label={time((t) => t.format(format)!)} tooltipText={time((t) => t.format("%d/%m/%Y")!)} />
     </PanelButton>
   );
 }
