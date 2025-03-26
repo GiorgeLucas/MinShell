@@ -5,25 +5,28 @@ import { App, Astal, Gtk, hook } from "astal/gtk4";
 import { Gio } from "astal";
 import { bash, ensureDirectory, sh } from "../../utils";
 import { sendBatch } from "../../utils/hyprland";
+import { isDarkWallpaper } from "../../utils/styles";
+import { darkTheme } from "../../config";
 
 const cachePath = `${GLib.get_user_cache_dir()}/Wallpapers`;
 const imageFormats = [".jpeg", ".jpg", ".webp", ".png"];
 
 const wallpaper = {
-  folder: GLib.get_home_dir(),
+  folder: GLib.get_home_dir() + "/Wallpapers",
+  oldCache : "",
   current: {
-    value: "",
-    get_value: function(){
-      this.get_current();
-      return this.value;  
-    },
-    get_current: function(){
-      execAsync("swww query")
-        .then((out) => {
-          this.value = out.split("image:")[1].trim();
-        })
-        .catch(() => "")
-    },
+    value: "", // Armazena o valor atual
+    get: async function() {
+      try {
+        const out = await execAsync("swww query");
+        this.value = out.split("image:")[1]?.trim() || "";
+        return this.value;
+      } catch (e) {
+        console.error("Erro ao obter wallpaper:", e);
+        this.value = "";
+        return "";
+      }
+    }
   }
 }
 
@@ -191,12 +194,17 @@ function wallpaperPicker() {
                       ),
                   );
 
+                   // Filtrar apenas wallpapers que correspondem ao tema atual
+                  const filteredWallpapers = wallpaperList.filter(w => 
+                    isDarkWallpaper(`${cachePath}/${w}`) === darkTheme.get()
+                  );
+
                   wallpapersToCache.forEach((image) => {
                     cacheImage(`${path}/${image}`, cachePath, 200);
                   });
 
                   box.set_children(
-                    wallpaperList.map((w) => (
+                    filteredWallpapers.map((w) => (
                       <button
                         tooltipText={w}
                         onClicked={() => {
@@ -207,15 +215,41 @@ function wallpaperPicker() {
                             "random",
                             `${path}/${w}`,
                           ]).then(() => {
-                            const current = cacheImage(
-                              `${path}/${w}`,
-                              cachePath,
-                              450,
-                              `${w.split(".").shift()}_current`,
-                            );
-                            GLib.remove(current);
-                            wallpaper.current.value = current;
-                          });
+                            if (wallpaper.oldCache === "") {
+                              const cacheDir = Gio.File.new_for_path(cachePath);
+                              const enumerator = cacheDir.enumerate_children(
+                                  'standard::name', 
+                                  Gio.FileQueryInfoFlags.NONE, 
+                                  null
+                              );
+
+                              let fileInfo;
+                              while ((fileInfo = enumerator.next_file(null)) !== null) {
+                                  const fileName = fileInfo.get_name();
+                                  if (fileName.includes('current')) {
+                                      wallpaper.oldCache = GLib.build_filenamev([cachePath, fileName]);
+                                      break;
+                                  }
+                              }
+                              enumerator.close(null);
+                              console.log("novo cache: " + wallpaper.oldCache);
+                            }
+
+                            if (GLib.file_test(wallpaper.oldCache, GLib.FileTest.EXISTS)) {
+                              GLib.remove(wallpaper.oldCache);
+                            }
+
+                            if (GLib.file_test(`${path}/${w}`, GLib.FileTest.EXISTS)) {
+     
+                              wallpaper.oldCache = cacheImage(
+                                `${path}/${w}`, // home/wallpapers/blablabla
+                                cachePath,
+                                450,
+                                `${w.split(".").shift()}_current` // cache/blablabla_current
+                              );
+                            }  
+                            
+                          }).catch((e) => console.log(e));
                         }}
                       >
                         <Gtk.Picture
@@ -230,7 +264,24 @@ function wallpaperPicker() {
                   );
                 });
               }
+              darkTheme.subscribe((isDarkTheme)=> {
+                populateBox(self, wallpaper.folder);
+                wallpaper.current.get().then((currentWallpaper) => {
+                  if(isDarkWallpaper(currentWallpaper) !== isDarkTheme){
+                    const wallpaperList = getWallpaperList(wallpaper.folder).filter(w => 
+                      isDarkWallpaper(`${cachePath}/${w}`) === darkTheme.get()
+                    );
+                    sh([
+                      "swww",
+                      "img",
+                      "--transition-type",
+                      "random",
+                      `${wallpaper.folder}/${wallpaperList[0]}`,
+                    ]).catch((e) => console.log(e));
+                  } 
+                });
 
+              });
               populateBox(self, wallpaper.folder);
               hook(self, App, "window-toggled", (_, win) => {
                 if (win.name == "wallpaperpicker" && !win.visible) {
@@ -244,7 +295,6 @@ function wallpaperPicker() {
               hexpand
               halign={Gtk.Align.CENTER}
             />
-            ,
           </box>
         </Gtk.ScrolledWindow>
       </box>

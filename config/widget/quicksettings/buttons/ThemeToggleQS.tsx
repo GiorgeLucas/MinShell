@@ -4,10 +4,11 @@ import { bind, GLib, Variable } from "astal";
 import { App } from "astal/gtk4";
 import app from "astal/gtk4/app";
 import { applyTheme } from "../../../utils/styles";
+import { darkTheme } from "../../../config";
 
 export default function ThemeToggleQS() {
   
-  const darkTheme = Variable(false);
+  //const darkTheme = Variable(false);
 
   return (
     <QSButton
