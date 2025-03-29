@@ -1,9 +1,52 @@
 import { execAsync, Gio, GLib, Variable } from "astal";
 import { Gtk } from "astal/gtk4";
+import GdkPixbuf from "gi://GdkPixbuf";
 
 export function ensureDirectory(path: string) {
   if (!GLib.file_test(path, GLib.FileTest.EXISTS))
     Gio.File.new_for_path(path).make_directory_with_parents(null);
+}
+
+export function cacheImage(
+  inputPath: string,
+  cachePath: string,
+  newWidth: number,
+  customName?: string,
+  fastest?: boolean,
+) {
+  const baseName = GLib.path_get_basename(inputPath);
+  const extension = baseName.split(".").pop()!.toLowerCase();
+  const outputFileName = customName ? `${customName}.${extension}` : baseName;
+  const outputPath = `${cachePath}/${outputFileName}`;
+
+  try {
+    let pixbuf = GdkPixbuf.Pixbuf.new_from_file(inputPath);
+
+    const aspectRatio = pixbuf.get_width() / pixbuf.get_height();
+    const scaledHeight = Math.round(newWidth / aspectRatio);
+
+    const scaledPixbuf = pixbuf.scale_simple(
+      newWidth,
+      scaledHeight,
+      fastest ? GdkPixbuf.InterpType.NEAREST : GdkPixbuf.InterpType.BILINEAR,
+    );
+
+    const outputFormat = extension === "png" ? "png" : "jpeg";
+    scaledPixbuf?.savev(outputPath, outputFormat, [], []);
+
+    return outputPath;
+  } catch {
+    const black_pixbuf = GdkPixbuf.Pixbuf.new(
+      GdkPixbuf.Colorspace.RGB,
+      true,
+      8,
+      newWidth,
+      (newWidth * 9) / 16,
+    );
+    black_pixbuf.fill(0x0);
+    black_pixbuf.savev(outputPath, "jpeg", [], []);
+    return outputPath;
+  }
 }
 
 export async function launchDefaultAsync(uri: string) {
