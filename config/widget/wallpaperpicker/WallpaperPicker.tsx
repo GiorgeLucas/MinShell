@@ -7,6 +7,33 @@ import { sendBatch } from "../../utils/hyprland";
 import { darkTheme } from "../../config";
 import { wallpapersManager } from "../../utils/wallpapers";
 
+function populateBox(box: Astal.Box) {
+  timeout(100, () => {
+    wallpapersManager.generateCache();
+
+    const wallpapersObjectList = wallpapersManager.wallpapersObjectsList.filter(wallpaperObj => wallpaperObj.isDark === darkTheme.get())
+
+    box.set_children(
+      wallpapersObjectList.map((wallpaperObj) => (
+        <button
+          tooltipText={wallpaperObj.path}
+          onClicked={() => {
+            wallpapersManager.setCurrentWallpaper(wallpaperObj);
+          }}
+        >
+          <Gtk.Picture
+            cssClasses={["image"]}
+            overflow={Gtk.Overflow.HIDDEN}
+            contentFit={Gtk.ContentFit.COVER}
+            widthRequest={200}
+            file={Gio.file_new_for_path(`${wallpaperObj.cachePath}`)}
+          />
+        </button>
+      )),
+    );
+  });
+}
+
 function wallpaperPicker() {
   ensureDirectory(wallpapersManager.cacheFolder);
 
@@ -64,6 +91,13 @@ function wallpaperPicker() {
             iconName="user-trash-full-symbolic"
           />
           <button
+            tooltipText={"Reload Wallpapers"}
+            onClicked={() => {
+              wallpapersManager.updateWallpapersObjectsList();
+            }}
+            iconName="view-refresh-symbolic"
+          />
+          <button
             tooltipText={"Change folder"}
             onClicked={() => {
               App.get_window("wallpaperpicker")?.hide();
@@ -97,32 +131,6 @@ function wallpaperPicker() {
             spacing={6}
             vexpand
             setup={(self) => {
-              function populateBox(box: Astal.Box) {
-                timeout(100, () => {
-                  wallpapersManager.generateCache();
-
-                  const wallpapersObjectList = wallpapersManager.wallpapersObjectsList.filter(wallpaperObj => wallpaperObj.isDark === darkTheme.get())
-
-                  box.set_children(
-                    wallpapersObjectList.map((wallpaperObj) => (
-                      <button
-                        tooltipText={wallpaperObj.path}
-                        onClicked={() => {
-                          wallpapersManager.setCurrentWallpaper(wallpaperObj);
-                        }}
-                      >
-                        <Gtk.Picture
-                          cssClasses={["image"]}
-                          overflow={Gtk.Overflow.HIDDEN}
-                          contentFit={Gtk.ContentFit.COVER}
-                          widthRequest={200}
-                          file={Gio.file_new_for_path(`${wallpaperObj.cachePath}`)}
-                        />
-                      </button>
-                    )),
-                  );
-                });
-              }
               populateBox(self);
               hook(self, App, "window-toggled", (_, win) => {
                 if (win.name == "wallpaperpicker" && !win.visible) {

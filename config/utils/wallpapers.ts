@@ -20,7 +20,7 @@ export class WallpapersManager {
   static #instance: WallpapersManager;
 
   private constructor() {
-    
+
   }
 
   static get instance(): WallpapersManager {
@@ -98,6 +98,19 @@ export class WallpapersManager {
       console.error("Erro ao analisar wallpaper: ", e);
       return false;
     }
+  }
+
+  updateWallpapersObjectsList() {
+    const wallpapersImageList = this.loadWallpapersFolder();
+    wallpapersImageList.forEach((image) => {
+      if (!this.wallpapersObjectsList.some((wallpaper) => wallpaper.filename == image)) {
+        const path = `${this.wallpapersFolder}/${image}`;
+        this.wallpapersObjectsList.push(new Wallpaper(image, this.isDarkWallpaper(path)));
+        console.log("Adicionado novo Wallpaper: [Filename]:" + image);
+      }
+    });
+    this.wallpapersObjectsList = this.wallpapersObjectsList.filter((wallpaper) => GLib.file_test(wallpaper.path, GLib.FileTest.EXISTS));
+    console.log(this.wallpapersObjectsList);
   }
 
   private initWallpapersObjectsList() {
