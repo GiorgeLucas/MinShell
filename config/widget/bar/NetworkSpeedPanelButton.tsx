@@ -4,9 +4,8 @@ import PanelButton from "../common/PanelButton";
 export default function NetworkSpeedPanelButton() {
   return (
     <PanelButton window="">
-      <box cssClasses={["network-speed"]}>
-        <label
-          cssClasses={["label"]}
+      <label
+          cssClasses={["panel-btn__label"]}
           label={networkSpeed((value) => {
             const downloadSpeed = value.download;
             const uploadSpeed = value.upload;
@@ -20,7 +19,6 @@ export default function NetworkSpeedPanelButton() {
             return `${speed} MB/s ${symbol}`;
           })}
         />
-      </box>
     </PanelButton>
   );
 }

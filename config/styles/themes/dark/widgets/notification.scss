@@ -2,7 +2,7 @@
 @use "sass:color";
 @use "sass:math";
 
-.notifications-container {
+.notifications-box {
   min-width: 400px;
   min-height: 420px;
   border-radius: $bar-border-radius;
@@ -20,22 +20,31 @@
     background-color: $fg-color;
   }
 
-  .window-header {
+  &__header {
     padding: 8px;
     padding-bottom: 0;
 
-    label {
+    .notifications-box__title {
       font-size: 1.2rem;
       color: $fg-color;
     }
 
-    .dnd {
+    .notifications-box__dnd {
       margin-right: 0.5rem;
       background-color: $panel-hover-bg-color;
       padding: 0 0.6rem;
       transition: all 0.2s ease-in-out;
 
-      &.active {
+      label {
+        font-size: 0.95rem;
+        color: $fg-color;
+      }
+
+      &:hover {
+        background-color: $panel-hover-bg-color;
+      }
+
+      &--active {
         label {
           color: $button-active-fg-color;
         }
@@ -46,18 +55,9 @@
           background-color: $button-active-bg-color;
         }
       }
-
-      &:hover {
-        background-color: $panel-hover-bg-color;
-      }
-
-      label {
-        font-size: 0.95rem;
-        color: $fg-color;
-      }
     }
 
-    .clear {
+    .notifications-box__clear-btn {
       padding: 0.2rem 0.5rem;
       background-color: $button-bg-color;
       color: $fg-color;
@@ -87,7 +87,7 @@
     margin-top: 1px;
   }
 
-  .notification-container {
+  .notification-box {
     min-width: 1px;
     min-height: 1px;
     margin: 1px;
@@ -97,7 +97,7 @@
   }
 }
 
-.notification-container {
+.notification-box {
   background-color: $bg-color;
   box-shadow: $border-shadow;
   border-radius: $bar-border-radius;
@@ -105,19 +105,20 @@
   min-width: 330px;
 
   padding: 12px 8px;
+  padding-top: 6px;
 
-  .header {
+  &__header {
 
-    .app-name {
+    .notification-box__app-name {
       color: $fg-color;
     }
 
-    .time {
+    .notification-box__time {
       margin-right: 0.5rem;
       color: $fg-color;
     }
 
-    button {
+    .notification-box__close-btn {
       padding: 0.4em;
       background-color: $button-bg-color;
       border-radius: 4px;
@@ -136,19 +137,19 @@
     background-color: $fg-color;
   }
 
-  .content {
-    .summary {
+  &__content {
+    .notification-box__summary {
       font-size: 1.3em;
       color: $fg-color;
     }
 
-    .body {
+    .notification-box__body {
       font-size: 1.1em;
       font-weight: normal;
       color: $fg-color;
     }
 
-    .image image {
+    .notification-box__image-box image {
       border-radius: 5px;
       min-width: 60px;
       min-height: 60px;
@@ -158,10 +159,10 @@
     }
   }
 
-  .actions {
+  &__actions {
     margin-top: 0.5rem;
 
-    button {
+    .notification-box__action-btn {
       padding: 6px 20px;
       background-color: $button-bg-color;
       border-radius: 4px;

@@ -13,13 +13,13 @@ function WorkspaceButton({ ws, ...props }: WsButtonProps) {
   const classNames = Variable.derive(
     [bind(hyprland, "focusedWorkspace"), bind(hyprland, "clients")],
     (fws, _) => {
-      const classes = ["workspace-button"];
+      const classes = ["ws-box__ws-btn"];
 
       const active = fws.id == ws.id;
-      active && classes.push("active");
+      active && classes.push("ws-box__ws-btn--active");
 
       const occupied = hyprland.get_workspace(ws.id)?.get_clients().length > 0;
-      occupied && classes.push("occupied");
+      occupied && classes.push("ws-box__ws-btn--occupied");
       return classes;
     },
   );
@@ -42,7 +42,7 @@ function range(max: number) {
 
 export default function WorkspacesPanelButton() {
   return (
-    <box cssClasses={["workspace-container"]} spacing={4}>
+    <box cssClasses={["ws-box"]} spacing={4}>
       {range(9).map((i) => (
         <WorkspaceButton ws={AstalHyprland.Workspace.dummy(i + 1, null)} />
       ))}

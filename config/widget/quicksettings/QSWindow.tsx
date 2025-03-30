@@ -57,7 +57,7 @@ function MediaPLayerList(){
 
 function Header(){
   return (
-    <box hexpand={true} cssClasses={["header"]} spacing={6}>
+    <box hexpand={true} cssClasses={["qs-box__header"]} spacing={6}>
       <label label={"Quick Settings"} hexpand xalign={0} valign={Gtk.Align.CENTER} />
       <PowerMenu />
     </box>
@@ -73,7 +73,7 @@ export default function QSWindow(_gdkmonitor: Gdk.Monitor) {
       layout="top_right"
     >
       <box
-        cssClasses={["window-content", "qs-container"]}
+        cssClasses={["window-content", "qs-box"]}
         vertical
         spacing={10}
       >

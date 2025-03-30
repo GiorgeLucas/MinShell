@@ -15,7 +15,7 @@ export function QSMenuButton({
   setup,
 }: QSMenuButtonProps) {
   return (
-    <menubutton setup={setup} tooltipText={label} cssClasses={["qs-button"]}>
+    <menubutton setup={setup} tooltipText={label} cssClasses={["qs-box__menu-btn"]}>
       <image halign={Gtk.Align.CENTER} iconName={iconName} />
       {child}
     </menubutton>
@@ -42,12 +42,12 @@ export default function QSButton<T extends GObject.Object>({
 } :  QSButtonProps<T>) {
 
   function getCssClasses(): string[] | Binding<string[]> {
-    if (!connection) return ["qs-button"];
+    if (!connection) return ["qs-box__button"];
 
     const [object, property, cond] = connection;
     const computeClasses = (v: any) => {
-      const classes = ["qs-button"];
-      if (cond ? cond(v) : v) classes.push("active");
+      const classes = ["qs-box__button"];
+      if (cond ? cond(v) : v) classes.push("qs-box__button--active");
       return classes;
     };
 
@@ -55,7 +55,7 @@ export default function QSButton<T extends GObject.Object>({
       ? bind(object).as(computeClasses)
       : property != null
         ? bind(object, property).as(computeClasses)
-        : ["qs-button"];
+        : ["qs-box__button"];
   }
 
   return (

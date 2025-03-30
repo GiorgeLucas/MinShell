@@ -1,22 +1,22 @@
 @use "../variables.scss" as *;
 
-.verification-container {
+.verification-box {
     color: $fg-color;
     background-color: $bg-color;
     padding: 1em;
     box-shadow: $border-shadow;
     min-width: 300px;
 
-    .title {
+    &__title {
         font-size: 1.3em;
     }
 
-    .body {
+    &__body {
         font-size: 1.1em;
         margin-bottom: 1em;
     }
 
-    button {
+    &__button {
         color: $button-fg-color;
         background-color: $button-bg-color;
         padding: 6px 20px;

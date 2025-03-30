@@ -9,7 +9,7 @@ const notifd = AstalNotifd.get_default();
 function NotifIcon() {
   return (
     <image
-      cssClasses={["icon"]}
+      cssClasses={["panel-btn__icon"]}
       iconName={bind(notifd, "dont_disturb").as((dnd) =>
         `notifications-${dnd ? "disabled-" : ""}symbolic`
       )}

@@ -14,7 +14,7 @@ export default function PanelButton({
 }: PanelButtonProps) {
   return (
     <button 
-      cssClasses={["panel-button"]}
+      cssClasses={["panel-btn"]}
       setup={(self) => {
         if (window) {
           let open = false;
@@ -29,12 +29,12 @@ export default function PanelButton({
 
             if (open && !visible) {
               open = false;
-              self.remove_css_class("active");
+              self.remove_css_class("panel-btn--active");
             }
 
             if (visible) {
               open = true;
-              self.add_css_class("active");
+              self.add_css_class("panel-btn--active");
             }
           });
         }

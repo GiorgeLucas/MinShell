@@ -1,0 +1,38 @@
+@use "../variables.scss" as *;
+@use "sass:color";
+@use "sass:math";
+
+.media-player-box {
+  min-width: 180px;
+  background-color: $bg-color;
+  box-shadow: $border-shadow;
+  padding: 0.5rem;
+  border-radius: $bar-border-radius;
+
+  label {
+    color: $fg-color;
+  }
+
+  &__btn {
+    background-color: $button-bg-color;
+    color: $button-fg-color;
+    padding: 2px;
+    margin-left: 2px;
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      background-color: $button-hover-bg-color;
+      color: $button-hover-fg-color;
+    }
+
+    &:active {
+      background-color: $button-active-bg-color;
+      color: $button-active-fg-color;
+    }
+  }
+
+  &__cover {
+    border-radius: $bar-border-radius;
+    margin-right: 0.3rem;
+  }
+}

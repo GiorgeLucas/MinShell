@@ -2,65 +2,29 @@
 @use "sass:color";
 @use "sass:math";
 
-.wallpaperpicker-container {
-  min-height: 150px;
-  margin: 20px;
+.wlp-box{
   background-color: $bg-color;
   color: $fg-color;
   box-shadow: $border-shadow;
-
-  > box {
-    margin: 2em;
-    margin-bottom: 0.5rem;
-    
-    label {
-      font-size: 1.2rem;
-      color: $fg-color;
-
-      &.directory {
-        font-size: 0.95rem;
-        font-weight: 400;
-        font-style: italic;
-      }
-    }
-
-    button {
-      color: $button-fg-color;
-      background-color: $button-bg-color;
-      padding: 0 0.6rem;
-
-      &:hover {
-        color: $button-hover-fg-color;
-        background-color: $button-hover-bg-color;
-      }
-
-      &:active {
-        color: $button-active-fg-color;
-        background-color: $button-active-bg-color;
-      }
-    }
+  padding: 8px;
+  min-height: 500px;
+  &__header{
+    //min-height: 100px;
+    padding-bottom: 10px;
   }
-
-  separator {
-    margin: 2em;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  scrolledwindow viewport {
-    > box {
-      margin: 2em;
-      margin-top: 6px;
-    }
-  }
-
-  .wallpaper-button {
-    background-color: pink;
-  }
-
-
-  .image {
+  &__button {
+    background-color: $button-bg-color;
+    color: $fg-color;
     border-radius: $bar-border-radius;
-    background-size: contain;
+    padding: 8px 20px;
+    transition: all 0.1s ease-in-out;
+
+    &:hover{
+      background-color: $button-hover-bg-color;
+      color: $button-hover-fg-color;
+    } 
+  }
+  &__wallpaper-img{
+    border-radius: $bar-border-radius;
   }
 }

@@ -20,12 +20,12 @@ export default function VolumeBox() {
   return (
     
     <box
-      cssClasses={["qs-box", "volume-box"]}
+      cssClasses={["volume-box"]}
       valign={Gtk.Align.CENTER}
       spacing={10}
     >
-        <button onClicked={mute}>
-            <image iconName={bind(speaker, "volumeIcon")} valign={Gtk.Align.CENTER} />  
+        <button cssClasses={["volume-box__button"]} onClicked={mute}>
+            <image cssClasses={["volume-box__btn-icon"]} iconName={bind(speaker, "volumeIcon")} valign={Gtk.Align.CENTER} />  
         </button>
       
       <slider

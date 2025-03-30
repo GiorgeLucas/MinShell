@@ -11,7 +11,7 @@ export default function DateMenu(_gdkmonitor: Gdk.Monitor) {
       animation="slide top"
       layout={"top_center"}
     >
-      <box vertical cssClasses={["window-content", "datemenu-container"]}>
+      <box vertical cssClasses={["window-content", "datemenu-box"]}>
         <Gtk.Calendar />
       </box>
     </PopupWindow>

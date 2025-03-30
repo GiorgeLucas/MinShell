@@ -50,7 +50,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor = App.get_monitors()[0]) {
 
   return <window
     visible
-    cssClasses={["Bar"]}
+    cssClasses={["bar"]}
     gdkmonitor={gdkmonitor}
     exclusivity={Astal.Exclusivity.EXCLUSIVE}
     anchor={TOP | LEFT | RIGHT}

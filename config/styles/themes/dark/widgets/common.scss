@@ -6,6 +6,12 @@
   font-weight: 600;
 }
 
+window {
+  background: transparent;
+  color: $fg-color;
+  font-weight: bold;
+}
+
 scale {
   margin: 0;
   padding: 0;
@@ -44,8 +50,8 @@ menubutton {
 button {
   color: $button-fg-color;
   border-radius: $button-border-radius;
-  background-color: transparent;
-  transition: transform 0.2s ease-in-out;
+  background-color: $bg-color;
+  transition: transform 0.1s ease-in-out;
 
   &:active>* {
     transform: scale(0.85);
@@ -62,12 +68,6 @@ button {
   }
 }
 
-window {
-  background: transparent;
-  color: $fg-color;
-  font-weight: bold;
-}
-
 separator {
   min-height: 2px;
   margin: 0.3rem 0.5rem;
@@ -81,7 +81,7 @@ separator {
   }
 }
 
-.panel-button {
+.panel-btn {
   background-color: $bg-color;
   color: $fg-color;
   border-radius: $panel-border-radius;
@@ -89,29 +89,28 @@ separator {
   margin: 2px;
   transition: all 0.2s ease-in-out;
 
-  &.notifications .circle {
-    border-radius: 99px;
-  }
-
   &:hover {
     background-color: $panel-hover-bg-color;
     color: $panel-hover-fg-color;
   }
 
-  &.active {
+  &--active {
     background-color: $panel-active-bg-color;
     color: $panel-active-fg-color;
+
+    &:hover{
+      background-color: $panel-active-bg-color;
+      color: $panel-active-fg-color;
+    }
   }
 }
 
 .window-content {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  margin: 8px;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    4px 4px 8px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
+  background-color: $bg-color;
+  color: $fg-color;
+  margin: 20px;
+  box-shadow: $border-shadow;
+  border-radius: $bar-border-radius;
 }
 
 .text-icon {
@@ -119,7 +118,6 @@ separator {
 }
 
 popover contents {
-  
   border-radius: $bar-border-radius;
   box-shadow: $border-shadow;
   background-color: $bg-color;
@@ -135,9 +133,6 @@ popover contents {
     color: $fg-color;
     padding: 8px 8px 8px 8px;
     
-    &:first-child {
-      //margin-bottom: 0.3rem;
-    }
     &:hover {
       background-color: $panel-hover-bg-color;
       color: $panel-hover-fg-color;
@@ -160,3 +155,4 @@ tooltip {
   padding: 0.4em;
   margin: 0.4em;
 }
+

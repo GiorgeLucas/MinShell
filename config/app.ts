@@ -15,3 +15,5 @@ App.start({
         initHyprland();
     },
 })
+
+// Refatorar o power menu e o estilo dele.

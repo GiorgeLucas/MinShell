@@ -1,6 +1,6 @@
 @use "../variables.scss" as *;
 
-.datemenu-container {
+.datemenu-box {
   background-color: $bg-color;
   color: $fg-color;
   font-size: 1.1em;
@@ -9,7 +9,6 @@
   transition: background-color 0.2s ease-in-out;
   calendar {
     header{
-      font-family: "Noto Sans";
       font-size: 1.2rem;
       padding-bottom: 1rem;
       button {
@@ -17,6 +16,7 @@
         padding: 8px;
         color: $fg-color;
         background-color: unset;
+        transition: all 0.1s ease-in-out;
         &:hover{
           color: $button-hover-fg-color;
           background-color: $button-hover-bg-color;
@@ -32,7 +32,7 @@
       padding: 2px;
       margin: 2px;
       border-radius: 10px;
-      
+      transition: background-color 0.1s ease-in-out;
       
       &:hover{
         background-color: $panel-hover-bg-color;
@@ -57,49 +57,7 @@
       &:hover{
         background-color: $button-active-bg-color;
       }
-      //box-shadow: 0 0 0 0.1rem $accent;
     }
     
   }
 }
-
-/*
-.datemenu-container {
-  padding: $window-padding;
-
-  .time {
-    font-size: 1.5rem;
-  }
-
-  .date {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  calendar {
-    background-color: transparent;
-    border: unset;
-
-    header {
-      padding-bottom: 0.3rem;
-      border: unset;
-    }
-
-    grid > * {
-      border-radius: $window-border-radius;
-      outline-color: $accent;
-      // outline: unset;
-    }
-
-    .day-number {
-      &:selected {
-        color: $bg;
-        background-color: $accent;
-      }
-    }
-    .today {
-      border-radius: $window-border-radius;
-      box-shadow: 0 0 0 0.1rem $accent;
-    }
-  }
-}*/

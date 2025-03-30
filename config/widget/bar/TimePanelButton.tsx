@@ -21,7 +21,7 @@ export default function TimePanelButton({ format = "%H:%M" }) {
       window={WINDOW_NAME}
       onClicked={onClick}
     >
-      <label label={time((t) => t.format(format)!)} tooltipText={time((t) => t.format("%d/%m/%Y")!)} />
+      <label cssClasses={["panel-btn__label"]} label={time((t) => t.format(format)!)} tooltipText={time((t) => t.format("%d/%m/%Y")!)} />
     </PanelButton>
   );
 }

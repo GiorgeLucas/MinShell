@@ -18,11 +18,11 @@ export default function MediaPlayer({ player } : {player: AstalMpris.Player}) {
   );
 
   return (
-    <box cssClasses={["media-player"]} hexpand>
+    <box cssClasses={["media-player-box"]} hexpand>
       <image
         overflow={Gtk.Overflow.HIDDEN}
         pixelSize={65}
-        cssClasses={["cover"]}
+        cssClasses={["media-player-box__cover"]}
         file={coverArt}
       />
       <box vertical hexpand>
@@ -31,14 +31,16 @@ export default function MediaPlayer({ player } : {player: AstalMpris.Player}) {
           halign={Gtk.Align.START}
           label={title}
           maxWidthChars={15}
+          cssClasses={["media-player-box__title"]}
         />
-        <label halign={Gtk.Align.START} label={artist} />
+        <label ellipsize={Pango.EllipsizeMode.END} maxWidthChars={15} cssClasses={["media-player-box__artist"]} halign={Gtk.Align.START} label={artist} />
       </box>
       <button
         halign={Gtk.Align.END}
         valign={Gtk.Align.END}
         onClicked={() => player.previous()}
         visible={bind(player, "canGoPrevious")}
+        cssClasses={["media-player-box__btn"]}
       >
         <image iconName="media-skip-backward-symbolic" pixelSize={24} />
       </button>
@@ -47,6 +49,7 @@ export default function MediaPlayer({ player } : {player: AstalMpris.Player}) {
         valign={Gtk.Align.END}
         onClicked={() => player.play_pause()}
         visible={bind(player, "canControl")}
+        cssClasses={["media-player-box__btn"]}
       >
         <image iconName={playIcon} pixelSize={24} />
       </button>
@@ -55,6 +58,7 @@ export default function MediaPlayer({ player } : {player: AstalMpris.Player}) {
         valign={Gtk.Align.END}
         onClicked={() => player.next()}
         visible={bind(player, "canGoNext")}
+        cssClasses={["media-player-box__btn"]}
       >
         <image iconName="media-skip-forward-symbolic" pixelSize={24} />
       </button>

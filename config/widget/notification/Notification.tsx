@@ -42,43 +42,45 @@ export default function Notification({
   return (
     <box
       name={n.id.toString()}
-      cssClasses={["window-content", "notification-container", urgency(n)]}
+      cssClasses={["window-content", "notification-box", urgency(n)]}
       hexpand={false}
       vexpand={false}
     >
       <box vertical>
-        <box cssClasses={["header"]} spacing={6}>
+        <box cssClasses={["notification-box__header"]} spacing={6}>
           {(n.appIcon || n.desktopEntry) && (
             <image
-              cssClasses={["app-icon"]}
+              cssClasses={["notification-box__app-icon"]}
               visible={!!(n.appIcon || n.desktopEntry)}
               file={extractIconName(n.appIcon)}
             />
           )}
           <label
-            cssClasses={["app-name"]}
+            cssClasses={["notification-box__app-name"]}
             halign={Gtk.Align.START}
             label={n.appName || "Unknown"}
           />
           <label
-            cssClasses={["time"]}
+            cssClasses={["notification-box__time"]}
             hexpand
             halign={Gtk.Align.END}
             label={time(n.time)!}
           />
-          <button onClicked={() => n.dismiss()}>
+          <button
+            cssClasses={["notification-box__close-btn"]}
+            onClicked={() => n.dismiss()}>
             <image iconName={"window-close-symbolic"} />
           </button>
         </box>
         <Gtk.Separator visible orientation={Gtk.Orientation.HORIZONTAL} />
-        <box cssClasses={["content"]} spacing={10}>
+        <box cssClasses={["notification-box__content"]} spacing={10}>
           {n.image && fileExists(n.image) && (
-            <box valign={Gtk.Align.START} cssClasses={["image"]}>
+            <box valign={Gtk.Align.START} cssClasses={["notification-box__image-box"]}>
               <image file={n.image} overflow={Gtk.Overflow.HIDDEN} />
             </box>
           )}
           {n.image && isIcon(n.image) && (
-            <box cssClasses={["icon-image"]} valign={Gtk.Align.START}>
+            <box cssClasses={["notification-box__icon-image"]} valign={Gtk.Align.START}>
               <image
                 iconName={n.image}
                 iconSize={Gtk.IconSize.LARGE}
@@ -91,14 +93,14 @@ export default function Notification({
             <label
               ellipsize={Pango.EllipsizeMode.END}
               maxWidthChars={30}
-              cssClasses={["summary"]}
+              cssClasses={["notification-box__summary"]}
               halign={Gtk.Align.START}
               xalign={0}
               label={n.summary}
             />
             {n.body && (
               <label
-                cssClasses={["body"]}
+                cssClasses={["notification-box__body"]}
                 maxWidthChars={30}
                 wrap
                 halign={Gtk.Align.START}
@@ -109,9 +111,9 @@ export default function Notification({
           </box>
         </box>
         {showActions && n.get_actions().length > 0 && (
-          <box cssClasses={["actions"]} spacing={6}>
+          <box cssClasses={["notification-box__actions"]} spacing={6}>
             {n.get_actions().map(({ label, id }) => (
-              <button hexpand onClicked={() => n.invoke(id)}>
+              <button cssClasses={["notification-box__action-btn"]} hexpand onClicked={() => n.invoke(id)}>
                 <label label={label} halign={Gtk.Align.CENTER} hexpand />
               </button>
             ))}

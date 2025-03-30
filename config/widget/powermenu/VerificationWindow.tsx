@@ -16,17 +16,18 @@ export default function VerificationWindow(_gdkmonitor: Gdk.Monitor) {
       layout="top_center"
     >
       <box
-        cssClasses={["window-content", "verification-container"]}
+        cssClasses={["window-content", "verification-box"]}
         vertical
         spacing={6}
       >
         <label
           label={bind(powermenu, "title").as(String)}
-          cssClasses={["title"]}
+          cssClasses={["verification-box__title"]}
         />
-        <label label={"Are you sure?"} cssClasses={["body"]} />
-        <box cssClasses={["buttons"]} homogeneous spacing={6}>
+        <label label={"Are you sure?"} cssClasses={["verification-box__body"]} />
+        <box cssClasses={["verification-box__buttons"]} homogeneous spacing={6}>
           <button
+            cssClasses={["verification-box__button"]}
             label={"No"}
             onClicked={() => App.toggle_window(WINDOW_NAME)}
             setup={(self) => {
@@ -36,6 +37,7 @@ export default function VerificationWindow(_gdkmonitor: Gdk.Monitor) {
             }}
           />
           <button
+            cssClasses={["verification-box__button"]}
             label={"Yes"}
             onClicked={() => {
               exec(powermenu.cmd);

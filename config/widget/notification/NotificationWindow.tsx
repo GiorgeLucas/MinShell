@@ -38,8 +38,8 @@ function DNDButton() {
         notifd.set_dont_disturb(!notifd.get_dont_disturb());
       }}
       cssClasses={bind(notifd, "dont_disturb").as((dnd) => {
-        const classes = ["dnd"];
-        dnd && classes.push("active");
+        const classes = ["notifications-box__dnd"];
+        dnd && classes.push("notifications-box__dnd--active");
         return classes;
       })}
       label={"Do Not Disturb"}
@@ -50,7 +50,7 @@ function DNDButton() {
 function ClearButton() {
   return (
     <button
-      cssClasses={["clear"]}
+      cssClasses={["notifications-box__clear-btn"]}
       onClicked={() => {
         notifd.notifications.forEach((n) => n.dismiss());
       }}
@@ -69,12 +69,12 @@ export default function NotificationWindow(_gdkmonitor: Gdk.Monitor) {
       layout="top_right"
     >
       <box
-        cssClasses={["window-content", "notifications-container"]}
+        cssClasses={["window-content", "notifications-box"]}
         vertical
         vexpand={false}
       >
-        <box cssClasses={["window-header"]}>
-          <label label={"Notifications"} hexpand xalign={0} />
+        <box cssClasses={["notifications-box__header"]}>
+          <label cssClasses={["notifications-box__title"]} label={"Notifications"} hexpand xalign={0} />
           <DNDButton />
           <ClearButton />
         </box>
