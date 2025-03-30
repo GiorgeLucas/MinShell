@@ -1,4 +1,4 @@
-import { execAsync, Gio, GLib } from "astal";
+import { execAsync, Gio, GLib, Variable } from "astal";
 import GdkPixbuf from "gi://GdkPixbuf";
 import { cacheImage, sh } from ".";
 
@@ -33,11 +33,15 @@ export class WallpapersManager {
   wallpapersFolder: string = GLib.get_home_dir() + "/Wallpapers";
   cacheFolder: string = `${GLib.get_user_cache_dir()}/Wallpapers`;
   oldCache = "";
-  wallpapersObjectsList: Wallpaper[] = [];
+  wallpapersObjectsList: Variable<Wallpaper[]>  = Variable([]);
   #imageFormats = [".jpeg", ".jpg", ".webp", ".png"];
 
   generateCache() {
-    const wallpapersToCache = this.wallpapersObjectsList.filter(
+    if(!GLib.file_test(this.cacheFolder, GLib.FileTest.EXISTS)){
+      GLib.mkdir(this.cacheFolder, 0o755);
+    }
+
+    const wallpapersToCache = this.wallpapersObjectsList.get().filter(
       (wallpaperObj) =>
         !GLib.file_test(
           `${wallpaperObj.cachePath}`,
@@ -103,14 +107,15 @@ export class WallpapersManager {
   updateWallpapersObjectsList() {
     const wallpapersImageList = this.loadWallpapersFolder();
     wallpapersImageList.forEach((image) => {
-      if (!this.wallpapersObjectsList.some((wallpaper) => wallpaper.filename == image)) {
+      if (!this.wallpapersObjectsList.get().some((wallpaper) => wallpaper.filename == image)) {
         const path = `${this.wallpapersFolder}/${image}`;
-        this.wallpapersObjectsList.push(new Wallpaper(image, this.isDarkWallpaper(path)));
+        this.wallpapersObjectsList.set([...this.wallpapersObjectsList.get(), new Wallpaper(image, this.isDarkWallpaper(path))])
         console.log("Adicionado novo Wallpaper: [Filename]:" + image);
       }
     });
-    this.wallpapersObjectsList = this.wallpapersObjectsList.filter((wallpaper) => GLib.file_test(wallpaper.path, GLib.FileTest.EXISTS));
-    console.log(this.wallpapersObjectsList);
+    this.wallpapersObjectsList.set(this.wallpapersObjectsList.get().filter((wallpaper) => GLib.file_test(wallpaper.path, GLib.FileTest.EXISTS)));
+    this.generateCache();
+    console.log(this.wallpapersObjectsList.get());
   }
 
   private initWallpapersObjectsList() {
@@ -118,9 +123,9 @@ export class WallpapersManager {
     wallpapersImageList.forEach((image) => {
       const path = `${this.wallpapersFolder}/${image}`;
       const wallpaper = new Wallpaper(image, this.isDarkWallpaper(path));
-      this.wallpapersObjectsList.push(wallpaper);
+      this.wallpapersObjectsList.set([...this.wallpapersObjectsList.get(), wallpaper]);
     });
-    console.log(this.wallpapersObjectsList);
+    console.log(this.wallpapersObjectsList.get());
   }
 
   init() {

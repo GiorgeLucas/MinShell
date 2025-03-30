@@ -5,7 +5,7 @@ import NotificationWindow from "./widget/notification/NotificationWindow";
 import PowerMenu from "./widget/powermenu/PowerMenu";
 import VerificationWindow from "./widget/powermenu/VerificationWindow";
 import QSWindow from "./widget/quicksettings/QSWindow";
-import newWallpaperPickerWindow from "./widget/wallpaperpicker/newWallpaperPickerWindow";
+import WallpaperPickerWindow from "./widget/wallpaperpicker/WallpaperPickerWindow";
 
 export default [
     Bar,
@@ -15,5 +15,5 @@ export default [
     QSWindow,
     PowerMenu,
     VerificationWindow,
-    newWallpaperPickerWindow
+    WallpaperPickerWindow
 ];

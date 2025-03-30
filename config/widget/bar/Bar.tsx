@@ -58,7 +58,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor = App.get_monitors()[0]) {
     setup={(self) => {
       darkTheme.subscribe((isDarkTheme) => {
         const newWallpaper = wallpapersManager.wallpapersObjectsList
-          .filter((wallpaperObj) => wallpaperObj.isDark === isDarkTheme)[0];
+          .get().filter((wallpaperObj) => wallpaperObj.isDark === isDarkTheme)[0];
 
         wallpapersManager.setCurrentWallpaper(newWallpaper)
       });

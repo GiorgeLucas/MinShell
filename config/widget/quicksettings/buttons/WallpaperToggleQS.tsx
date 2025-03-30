@@ -3,7 +3,7 @@ import QSButton from "../QSButton";
 import { bind } from "astal";
 import { App } from "astal/gtk4";
 import { WINDOW_NAME as QS_WINDOW_NAME } from ".././QSWindow";
-import { WINDOW_NAME } from "../../wallpaperpicker/newWallpaperPickerWindow";
+import { WINDOW_NAME } from "../../wallpaperpicker/WallpaperPickerWindow";
 //import { toggleWallpaperPicker } from "../../wallpaperpicker/WallpaperPicker";;
 
 export default function WallpaperToggleQS() {

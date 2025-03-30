@@ -7,7 +7,7 @@
   color: $fg-color;
   box-shadow: $border-shadow;
   padding: 8px;
-  min-height: 500px;
+  //min-height: 800px;
   &__header{
     //min-height: 100px;
     padding-bottom: 10px;
@@ -27,4 +27,8 @@
   &__wallpaper-img{
     border-radius: $bar-border-radius;
   }
+  &__body{
+    padding: 0px 200px;
+  }
+
 }
